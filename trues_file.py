@@ -1,4 +1,4 @@
-# Main File for Project.
+#True's Part of the Character Creator
 #Import Random
 #Create Character Function
     #Display Class Options
