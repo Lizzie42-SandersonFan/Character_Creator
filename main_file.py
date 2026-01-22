@@ -1,3 +1,4 @@
+#Main File for Character Creator
 # Main Menu
 # dictionary with options
 # User has to choose a number to select an option
