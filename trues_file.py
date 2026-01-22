@@ -1,4 +1,5 @@
 #TE 2nd Character Creator
+#True's Part of the Character Creator
 #Import Random
 import random
 
