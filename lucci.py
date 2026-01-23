@@ -14,11 +14,47 @@
 # dictionary with the different options the player can choose
 # Each option is associated with a number for easy selection
 # The options include actions like "View", "Create", "Edit", and "Leave"
+def main_menu():
+    options = {
+        1: "View Character",
+        2: "Create Character",
+        3: "Edit Character",
+        4: "Leave Game"
+    }
+    for key, value in options.items():
+        print(f"{key}. {value}")
 
 # CREATE CHARACTER FUNCTION
 # This function allows the player to create a new character
 # It prompts the player for character details and stores them in a dictionary
-# User can choos a class "Rogue", "Cleric", "Fighter"
+# User can choose a class "Rogue", "Cleric","Rogue"
+def create_character():
+    character = {}
+    character['name'] = input("Enter your character's name: ")
+    print("Choose your class:")
+    print("1. Rogue")
+    print("2. Cleric")
+    class_choice = input("Enter the number of your choice: ")
+    
+    if class_choice == '1':
+        character['class'] = 'Rogue'
+        character['strength'] = 20
+        character['health'] = 20
+        character['wisdom'] = 20
+        character['xp'] = 0
+        character['level'] = 1
+    elif class_choice == '2':
+        character['class'] = 'Cleric'
+        character['strength'] = 10
+        character['health'] = 30
+        character['wisdom'] = 20
+        character['xp'] = 0
+        character['level'] = 1
+    else:
+        print("Invalid choice. Please try again.")
+        return create_character()
+    
+    return character
 
    # ROGUE CLASS
     # If user chooses 2 then it is Rouge
@@ -60,3 +96,7 @@
               # print(f"{character['name']} has leveled up to level {character['level']}!")
         #  else:
                 # break
+
+def level_up_loop(character):
+    while true
+    
