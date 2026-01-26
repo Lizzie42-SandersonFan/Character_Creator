@@ -15,12 +15,17 @@
 # Each option is associated with a number for easy selection
 # The options include actions like "View", "Create", "Edit", and "Leave"
 def main_menu():
+    """
+    Displays the main menu options for the player.
+    """
     options = {
         1: "View Character",
         2: "Create Character",
         3: "Edit Character",
         4: "Leave Game"
     }
+
+    print("\nMain Menu")
     for key, value in options.items():
         print(f"{key}. {value}")
 
@@ -98,5 +103,28 @@ def create_character():
                 # break
 
 def level_up_loop(character):
-    while true
-    
+    """
+    Checks if the character has enough XP to level up.
+    Rogue needs 15 XP per level.
+    Cleric needs 20 XP per level.
+    """
+    while True:
+        if character['class'] == 'Rogue':
+            xp_needed = character['level'] * 15
+        else:
+            xp_needed = character['level'] * 20
+
+        if character['xp'] >= xp_needed:
+            character['xp'] -= xp_needed
+            character['level'] += 1
+            character['strength'] += 1
+
+            if character['class'] == 'Cleric' and character['level'] % 5 == 0:
+                character['spell_slots'] += 1
+                print("You gained an extra spell slot!")
+
+            print(f"{character['name']} leveled up to level {character['level']}!")
+        else:
+            break
+
+
