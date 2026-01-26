@@ -69,6 +69,7 @@ def create_character():
             print(f"Dexterity: {fighter['Stats']['Dexterity']}")
             print(f"Intelligence: {fighter['Stats']['Intelligence']}")
             print(f"Weapon: {fighter['Stats']['Weapon']}")
+            fighter = fighter + 1
             characters.append(fighter)
             slow_print("Character creation complete!")
             #Run Menu
@@ -105,6 +106,7 @@ def create_character():
             print(f"Dexterity: {rogue['Stats']['Dexterity']}")
             print(f"Intelligence: {rogue['Stats']['Intelligence']}")
             print(f"Weapon: {rogue['Stats']['Weapon']}")
+            rogue = rogue + 1
             characters.append(rogue)
             slow_print("Character creation complete!")
             #Run Menu
@@ -141,6 +143,7 @@ def create_character():
             print(f"Dexterity: {cleric['Stats']['Dexterity']}")
             print(f"Intelligence: {cleric['Stats']['Intelligence']}")
             print(f"Weapon: {cleric['Stats']['Weapon']}")
+            cleric = cleric + 1
             characters.append(cleric)
             slow_print("Character creation complete!")
             #Run Menu
