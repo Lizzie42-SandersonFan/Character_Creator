@@ -33,6 +33,22 @@ def main_menu():
 # This function allows the player to create a new character
 # It prompts the player for character details and stores them in a dictionary
 # User can choose a class "Rogue", "Cleric","Rogue"
+  # ROGUE CLASS
+    # If user chooses 2 then it is Rouge
+    # Needs 15 xp to level up and doubles from there
+    # Stats
+    # Strength: 20
+    # Health: 20
+    # Wisdom:20
+
+
+   # Cleric CLASS
+    # If user chooses 3 then it is Cleric
+    # Needs 20 xp to level up and doubles from there
+    # Stats
+    # Strength: 10
+    # Health: 30
+    # Wisdom:20
 def create_character():
     character = {}
     character['name'] = input("Enter your character's name: ")
@@ -60,23 +76,6 @@ def create_character():
         return create_character()
     
     return character
-
-   # ROGUE CLASS
-    # If user chooses 2 then it is Rouge
-    # Needs 15 xp to level up and doubles from there
-    # Stats
-    # Strength: 20
-    # Health: 20
-    # Wisdom:20
-
-
-   # Cleric CLASS
-    # If user chooses 3 then it is Cleric
-    # Needs 20 xp to level up and doubles from there
-    # Stats
-    # Strength: 10
-    # Health: 30
-    # Wisdom:20
 
 
 # EDIT CHARACTER FUNCTION

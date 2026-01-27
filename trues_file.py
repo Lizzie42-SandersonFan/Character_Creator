@@ -13,9 +13,9 @@ def slow_print(text, delay=0.1):
     print()  # Print a final newline character
 #Classes Dictionary
 classes = { 
-1 : {"Name": "Fighter", "Weapons": ["Greatsword", "Greataxe", "Maul"], "Stats": {"Strength": 30, "Health": 20, "Wisdom": 10.}},
-2 : {"Name": "Rogue", "Weapons": ["Daggers", "Blowgun", "Knives"], "Stats": {"Strength": 20, "Health": 20, "Wisdom": 20.}},
-3 : {"Name": "Cleric", "Weapons": ["Mace", "Warhammer", "Morning Star"], "Stats": {"Strength": 10, "Health": 30, "Wisdom": 20.}}}
+1 : {"Name": "Fighter", "Weapons": ["Greatsword", "Greataxe", "Maul"], "Stats": {"Strength": 30, "Health": 20, "Wisdom": 10}},
+2 : {"Name": "Rogue", "Weapons": ["Daggers", "Blowgun", "Knives"], "Stats": {"Strength": 20, "Health": 20, "Wisdom": 20}},
+3 : {"Name": "Cleric", "Weapons": ["Mace", "Warhammer", "Morning Star"], "Stats": {"Strength": 10, "Health": 30, "Wisdom": 20}}}
 #List for Characters
 characters = []
 #Create Character Function
@@ -23,16 +23,16 @@ def create_character():
     #For each class in class options
     for key, value in classes.items():
         print(f"{key}: {value['Name']}:{value['Stats']}")
-    
-    #Try and accept
+
+    #Try and except
     try:
     #Class is set to input type 1-3 to choose your class
         c_class = int(input("Enter the number of your class choice: "))
     except ValueError:
         print("Invalid input. Please enter a number corresponding to your class choice.")
         return
-    
-    #If choise is ionlcaid, stop function
+
+    #If choice is invalid, stop function
     if c_class not in classes:
         print("Invalid class choice.")
         return       
@@ -70,6 +70,8 @@ def create_character():
     except ValueError:
         print("Invalid input. Please enter a number corresponding to your weapon choice.")
         return
+    #Name character
+    character["Name"] = input("Enter your character's name: ")
     #Finish character creation
     characters.append(character)
     slow_print(f"Character created: {character}")
