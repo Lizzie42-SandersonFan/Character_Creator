@@ -1,15 +1,31 @@
 # LV 1st RPG Pseudocode
 
+# Main Menu
+# dictionary with options
+# User has to choose a number to select an option
+# Each option is associated with a number for easy selection
+# What it would display
+# 1. View Characters
+# 2. Create Character
+# 3. Edit Character
+# 4. Exit
+# menu_option is set to input type 1 to 4 to decide which option to choose
+
 # dictionary with the different options the player can choose
 # Each option is associated with a number for easy selection
 # The options include actions like "View", "Create", "Edit", and "Leave"
 def main_menu():
+    """
+    Displays the main menu options for the player.
+    """
     options = {
         1: "View Character",
         2: "Create Character",
         3: "Edit Character",
         4: "Leave Game"
     }
+
+    print("\nMain Menu")
     for key, value in options.items():
         print(f"{key}. {value}")
 
@@ -17,6 +33,22 @@ def main_menu():
 # This function allows the player to create a new character
 # It prompts the player for character details and stores them in a dictionary
 # User can choose a class "Rogue", "Cleric","Rogue"
+  # ROGUE CLASS
+    # If user chooses 2 then it is Rouge
+    # Needs 15 xp to level up and doubles from there
+    # Stats
+    # Strength: 20
+    # Health: 20
+    # Wisdom:20
+
+
+   # Cleric CLASS
+    # If user chooses 3 then it is Cleric
+    # Needs 20 xp to level up and doubles from there
+    # Stats
+    # Strength: 10
+    # Health: 30
+    # Wisdom:20
 def create_character():
     character = {}
     character['name'] = input("Enter your character's name: ")
@@ -45,23 +77,6 @@ def create_character():
     
     return character
 
-   # ROGUE CLASS
-    # If user chooses 2 then it is Rouge
-    # Needs 15 xp to level up and doubles from there
-    # Stats
-    # Strength: 20
-    # Health: 20
-    # Wisdom:20
-
-
-   # Cleric CLASS
-    # If user chooses 3 then it is Cleric
-    # Needs 20 xp to level up and doubles from there
-    # Stats
-    # Strength: 10
-    # Health: 30
-    # Wisdom:20
-
 
 # EDIT CHARACTER FUNCTION
 # Running in the backround 
@@ -87,5 +102,28 @@ def create_character():
                 # break
 
 def level_up_loop(character):
-    while true
-    
+    """
+    Checks if the character has enough XP to level up.
+    Rogue needs 15 XP per level.
+    Cleric needs 20 XP per level.
+    """
+    while True:
+        if character['class'] == 'Rogue':
+            xp_needed = character['level'] * 15
+        else:
+            xp_needed = character['level'] * 20
+
+        if character['xp'] >= xp_needed:
+            character['xp'] -= xp_needed
+            character['level'] += 1
+            character['strength'] += 1
+
+            if character['class'] == 'Cleric' and character['level'] % 5 == 0:
+                character['spell_slots'] += 1
+                print("You gained an extra spell slot!")
+
+            print(f"{character['name']} leveled up to level {character['level']}!")
+        else:
+            break
+
+
