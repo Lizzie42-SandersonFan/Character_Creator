@@ -11,143 +11,77 @@ def slow_print(text, delay=0.1):
         sys.stdout.flush()  # Force the character to appear immediately
         time.sleep(delay)
     print()  # Print a final newline character
-
-#Fighter Dictionary: Weapons: Greatsword, Greataxe, Maul. Stats: Strength: 30, Health: 20, Wisdom: 10.
-fighter = {"Weapons": ["Greatsword", "Greataxe", "Maul"], "Stats": {"Strength": 30, "Health": 20, "Wisdom": 10.}}
-#Rogue Dictionary: Weapons: Dagger, Blowgun, Knives. Stats: Strength: 20, Health: 20, Wisdom: 20.
-rogue = {"Weapons": ["Daggers", "Blowgun", "Knives"], "Stats": {"Strength": 20, "Health": 20, "Wisdom": 20.}}
-#Cleric Dictionary: Weapons: Mace, Warhammer, Morning Star. Stats: Strength: 10, Health: 30, Wisdom: 20.
-cleric = {"Weapons": ["Mace", "Warhammer", "Morning Star"], "Stats": {"Strength": 10, "Health": 30, "Wisdom": 20.}}
+#Classes Dictionary
+classes = { 
+1 : {"Name": "Fighter", "Weapons": ["Greatsword", "Greataxe", "Maul"], "Stats": {"Strength": 30, "Health": 20, "Wisdom": 10.}},
+2 : {"Name": "Rogue", "Weapons": ["Daggers", "Blowgun", "Knives"], "Stats": {"Strength": 20, "Health": 20, "Wisdom": 20.}},
+3 : {"Name": "Cleric", "Weapons": ["Mace", "Warhammer", "Morning Star"], "Stats": {"Strength": 10, "Health": 30, "Wisdom": 20.}}}
 #List for Characters
 characters = []
 #Create Character Function
 def create_character():
-    #Display Class Options
-    slow_print("Welcome to the Character Creator!")
-    print("Choose your class:")
-    #1. Fighter, Display Fighter Stat Dictionary
-    print(f"1. Fighter: {fighter['Stats']}")
-    #2. Rogue, Display Rogue Stat Dictionary
-    print(f"2. Rogue: {rogue['Stats']}")
-    #3. Cleric, Display Cleric Stat Dictionary
-    print(f"3. Cleric: {cleric['Stats']}")
+    #For each class in class options
+    for key, value in classes.items():
+        print(f"{key}: {value['Name']}:{value['Stats']}")
+    
+    #Try and accept
+    try:
     #Class is set to input type 1-3 to choose your class
-    c_class = input("Enter the number of your class choice: ")
-    #Check Class Function
-    def check_class(c_class):
-        #If Class is set to 1
-        if c_class == "1":
-            #Display Fighter Stats
-            print(f"Fighter Stats: {fighter['Stats']}")
-            #You have two empty stats
-            slow_print("You have two empty stats.")
-            print("Rolling for your stats...")
-            #Roll for Dexterity
-            dexterity = random.randint(10, 30)
-            #Display Your Dexterity is Dexterity
-            slow_print(f"Your Dexterity is {dexterity}.")
-            #Add Dexterity to Fighter Stats
-            fighter['Stats']['Dexterity'] = dexterity
-            #Roll for Intelligence
-            intelligence = random.randint(10, 30)
-            #Display Your Intelligence is Intelligence
-            slow_print(f"Your Intelligence is {intelligence}.")
-            #Add Intelligence to Fighter Stats
-            fighter['Stats']['Intelligence'] = intelligence
-            #Display Fighter Stats
-            print(f"Fighter Stats: {fighter['Stats']}")
-            #Display Fighter List
-            print(f"Choose your weapon: {fighter['Weapons']}")
-            #Input Weapon Choice, Type the weapon you want
-            weapon_choice = input("Type the weapon you want: ")
-            #Add Weapon Choice to Fighter Info
-            fighter['Stats']['Weapon'] = weapon_choice
-            slow_print("Your finished stats:")
-            print(f"Strength: {fighter['Stats']['Strength']}")
-            print(f"Health: {fighter['Stats']['Health']}")
-            print(f"Wisdom: { fighter['Stats']['Wisdom']}")
-            print(f"Dexterity: {fighter['Stats']['Dexterity']}")
-            print(f"Intelligence: {fighter['Stats']['Intelligence']}")
-            print(f"Weapon: {fighter['Stats']['Weapon']}")
-            fighter = fighter + 1
-            characters.append(fighter)
-            slow_print("Character creation complete!")
-            #Run Menu
-        #If Class is set to 2
-        if c_class == "2":
-            #Display Rogue Stats
-            slow_print(f"Rogue Stats: {rogue['Stats']}")
-            #You have 2 empty stats
-            slow_print("You have two empty stats.")
-            print("Rolling for your stats...")
-            #Roll for Dexterity
-            dexterity = random.randint(10, 30)
-            #Display Your Dexterity is Dexterity
-            slow_print(f"Your Dexterity is {dexterity}.")
-            #Add Dexterity to Rogue Stats
-            rogue['Stats']['Dexterity'] = dexterity
-            #Roll for Intelligence
-            intelligence = random.randint(10, 30)
-            #Display Your Intelligence is Intelligence
-            slow_print(f"Your Intelligence is {intelligence}.")
-            #Add Intelligence to Rogue Stats
-            rogue['Stats']['Intelligence'] = intelligence
-            #Display Rogue Stats
-            print(f"Rogue Stats: {rogue['Stats']}")
-            #Display Rogue List
-            print(f"Choose your weapon: {rogue['Weapons']}")
-            #Input Weapon Choice, Type the weapon you want
-            weapon_choice = input("Type the weapon you want: ")
-            rogue['Stats']['Weapon'] = weapon_choice
-            slow_print("Your finished stats:")
-            print(f"Strength: {rogue['Stats']['Strength']}")
-            print(f"Health: {rogue['Stats']['Health']}")
-            print(f"Wisdom: {rogue['Stats']['Wisdom']}")
-            print(f"Dexterity: {rogue['Stats']['Dexterity']}")
-            print(f"Intelligence: {rogue['Stats']['Intelligence']}")
-            print(f"Weapon: {rogue['Stats']['Weapon']}")
-            rogue = rogue + 1
-            characters.append(rogue)
-            slow_print("Character creation complete!")
-            #Run Menu
-        #If Class is set to 3
-        if c_class == "3":
-            #Display Cleric Stats
-            slow_print(f"Cleric Stats: {cleric['Stats']}")
-            #You have 2 empty stats
-            slow_print("You have two empty stats.")
-            print("Rolling for your stats...")
-            #Roll for Dexterity
-            dexterity = random.randint(10, 30)
-            #Display Your Dexterity is Dexterity
-            slow_print(f"Your Dexterity is {dexterity}.")
-            #Add Dexterity to Cleric Stats
-            cleric['Stats']['Dexterity'] = dexterity
-            #Roll for Intelligence
-            intelligence = random.randint(10, 30)
-            #Display Your Intelligence is Intelligence
-            slow_print(f"Your Intelligence is {intelligence}.")
-            #Add Intelligence to Cleric Stats
-            cleric['Stats']['Intelligence'] = intelligence
-            #Display Cleric Stats
-            print(f"Cleric Stats: {cleric['Stats']}")
-            #Display Cleric List
-            print(f"Choose your weapon: {cleric['Weapons']}")
-            #Input Weapon Choice, Type the weapon you want
-            weapon_choice = input("Type the weapon you want: ")
-            cleric['Stats']['Weapon'] = weapon_choice
-            slow_print("Your finished stats:")
-            print(f"Strength: {cleric['Stats']['Strength']}")
-            print(f"Health: {cleric['Stats']['Health']}")
-            print(f"Wisdom: {cleric['Stats']['Wisdom']}")
-            print(f"Dexterity: {cleric['Stats']['Dexterity']}")
-            print(f"Intelligence: {cleric['Stats']['Intelligence']}")
-            print(f"Weapon: {cleric['Stats']['Weapon']}")
-            cleric = cleric + 1
-            characters.append(cleric)
-            slow_print("Character creation complete!")
-            #Run Menu
+        c_class = int(input("Enter the number of your class choice: "))
+    except ValueError:
+        print("Invalid input. Please enter a number corresponding to your class choice.")
+        return
+    
+    #If choise is ionlcaid, stop function
+    if c_class not in classes:
+        print("Invalid class choice.")
+        return       
 
-    #Run Check Class Function
-    check_class(c_class)
-create_character()
+    #Get select class data
+    base_class = classes[c_class]
+    #Copy base stats so originial class stats are not changed
+    character = { "Class": base_class["Name"], "Stats": base_class["Stats"].copy(), "Weapon": None }
+    #Inform user about random stats
+    slow_print("You have two empty stats.")
+    print("Rolling for your stats...")  
+    #generator random stats
+    character["Stats"]["Dexterity"] = random.randint(10, 30)
+    character["Stats"]["Intelligence"] = random.randint(10, 30)
+    #Display rolled stats
+    slow_print(f"Your rolled stats are: Dexterity: {character['Stats']['Dexterity']}, Intelligence: {character['Stats']['Intelligence']}")
+    #Ask user to choose a weapon
+    print("Choose your weapon from the following options:")
+    #For i in weapons
+    for i, weapon in enumerate(base_class["Weapons"], 1):
+        #Print weapon options
+        print(f"{i}: {weapon}")
+        #Try and accept weapon choice
+    try:
+        weapon_choice = int(input("Enter the number of your weapon choice: "))
+        #If weapon choice is valid, set weapon
+        if 1 <= weapon_choice <= len(base_class["Weapons"]):
+            #Set character weapon
+            character["Weapon"] = base_class["Weapons"][weapon_choice - 1]
+            #Else invalid weapon choice
+        else:
+            print("Invalid weapon choice.")
+            return
+        #Catch value error
+    except ValueError:
+        print("Invalid input. Please enter a number corresponding to your weapon choice.")
+        return
+    #Finish character creation
+    characters.append(character)
+    slow_print(f"Character created: {character}")
+def main():
+    #Main program loop
+    while True:
+        #Run Character Creation
+        create_character()
+        #Ask if user wants to create another character
+        another = input("Do you want to create another character? (yes/no): ")
+        if another.lower() != 'yes':
+            break
+main()
+
+
