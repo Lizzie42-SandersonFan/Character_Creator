@@ -2,6 +2,7 @@
 from trues_file import *
 delay = 0.06
 
+
 def type_print(string):
     for char in string:
         print(char, end="", flush = True)
