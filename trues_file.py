@@ -74,7 +74,7 @@ def create_character():
     character["Name"] = input("Enter your character's name: ")
     #Finish character creation
     characters.append(character)
-    slow_print(f"Character created: {character['Name']}, {character['Class']} Class, {character['Stats']}, Weapon: {character['Weapon']}")
+    slow_print(f"Character created:\nName: {character['Name']}\n Class: {character['Class']}\n Stats:\n Strength: {character['Stats']['Strength']}\n Health: {character['Stats']['Health']}\n Wisdom: {character['Stats']['Wisdom']}\n Dexterity: {character['Stats']['Dexterity']}\n Intelligence: {character['Stats']['Intelligence']}\n Weapon: {character['Weapon']}")
 def main():
     #Main program loop
     while True:
