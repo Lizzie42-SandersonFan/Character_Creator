@@ -2,7 +2,6 @@
 from trues_file import *
 delay = 0.06
 
-
 def type_print(string):
     for char in string:
         print(char, end="", flush = True)
@@ -14,20 +13,21 @@ def view_character():
     global characters
     if not characters:
         type_print("You don't have any characters to view.\nRedirecting you to main menu to make a character\n")
+        # Call main menu
     else:
-        for i, characters in enumerate(characters):
+        for character in characters:
             # Print the character names with a number before each one
-            print(f"{i+1}: {characters['Class']}")
+            print(f"{character['Name']} ({character["Class"]})")
     
     # Get user to acctually select a chracter to view
     while True:
-        view_choice = int(input("Type the number correxponding to that character you would like to view:\n"))
-        if view_choice == i+1:
-            print("User has choses to view character 1")
-            print(f"{characters}")
-            break
-        else:
-            print("It didn't work")
+        view_choice = input("Type the name of the character you want to view:\n").strip()
+        for chara in characters:
+            if view_choice in chara["Name"]:
+                print("Found the character")
+            else:
+                print("Could not find the character you typed in. Check your spelling and punctuation.")
+                continue
 
 # When they have selected a character, show the character name, class, stats, current attack moves, XP amount, and level. Ask user if they would like to edit their character. If yes, direct to edit func. If no, redirect to main menu
 
