@@ -54,7 +54,7 @@ def create_character():
     #For i in weapons
     for i, weapon in enumerate(base_class["Weapons"], 1):
         #Print weapon options
-        print(f"{i}: {weapon}")
+        print(f"{is}: {weapon}")
         #Try and accept weapon choice
     try:
         weapon_choice = int(input("Enter the number of your weapon choice: "))
@@ -74,7 +74,7 @@ def create_character():
     character["Name"] = input("Enter your character's name: ")
     #Finish character creation
     characters.append(character)
-    slow_print(f"Character created: {character}")
+    slow_print(f"Character created: {character['Name']}, {character['Class']} Class, {character['Stats']}, Weapon: {character['Weapon']}")
 def main():
     #Main program loop
     while True:
