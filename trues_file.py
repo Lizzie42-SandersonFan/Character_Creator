@@ -70,11 +70,14 @@ def create_character():
     except ValueError:
         print("Invalid input. Please enter a number corresponding to your weapon choice.")
         return
+    #Add xp and level to char dict.
+    character["XP"] = 0
+    character["Level"] = 1
     #Name character
     character["Name"] = input("Enter your character's name: ")
     #Finish character creation
     characters.append(character)
-    slow_print(f"Character created:\nName: {character['Name']}\n Class: {character['Class']}\n Stats:\n Strength: {character['Stats']['Strength']}\n Health: {character['Stats']['Health']}\n Wisdom: {character['Stats']['Wisdom']}\n Dexterity: {character['Stats']['Dexterity']}\n Intelligence: {character['Stats']['Intelligence']}\n Weapon: {character['Weapon']}")
+    slow_print(f"Character created:\nName: {character['Name']}\n Class: {character['Class']}\n Stats:\n Strength: {character['Stats']['Strength']}\n Health: {character['Stats']['Health']}\n Wisdom: {character['Stats']['Wisdom']}\n Dexterity: {character['Stats']['Dexterity']}\n Intelligence: {character['Stats']['Intelligence']}\n XP: {character['XP']}\n Level: {character['Level']}\n Weapon: {character['Weapon']}")
 def main():
     #Main program loop
     while True:
