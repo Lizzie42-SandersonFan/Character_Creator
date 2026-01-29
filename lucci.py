@@ -125,5 +125,5 @@ def level_up_loop(character):
             print(f"{character['name']} leveled up to level {character['level']}!")
         else:
             break
-
+# TENGO QUE LLAMAR A LAS FUNCIONES EN UN MAIN LOOP Y EN EL OTRO PARA QUE CORRAN
 
