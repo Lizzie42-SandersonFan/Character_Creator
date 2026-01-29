@@ -126,4 +126,40 @@ def level_up_loop(character):
         else:
             break
 # TENGO QUE LLAMAR A LAS FUNCIONES EN UN MAIN LOOP Y EN EL OTRO PARA QUE CORRAN
+def run_game():
+    character = None
+
+    while True:
+        main_menu()
+        choice = input("Choose an option (1–4): ")
+
+        if choice == '1':
+            if character:
+                print("\nCharacter Info:")
+                for key, value in character.items():
+                    print(f"{key}: {value}")
+            else:
+                print("No character created yet.")
+
+        elif choice == '2':
+            character = create_character()
+            print("Character created successfully!")
+
+        elif choice == '3':
+            if character:
+                level_up_loop(character)
+            else:
+                print("No character to edit. Create one first.")
+
+        elif choice == '4':
+            print("Goodbye!")
+            break
+
+        else:
+            print("Invalid choice. Try again.")
+
+
+run_game()
+
+
 
