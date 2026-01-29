@@ -89,7 +89,6 @@ def create_character():
 
 # Level up loop
 # def level_up_loop(character):
-    # while true
        # xp_needed = character['level'] * 15 if character['class'] == 'Rogue' else character['level'] * 20
          # if character['xp'] >= xp_needed:
               # character['level'] += 1
@@ -107,23 +106,58 @@ def level_up_loop(character):
     Rogue needs 15 XP per level.
     Cleric needs 20 XP per level.
     """
-    while True:
-        if character['class'] == 'Rogue':
-            xp_needed = character['level'] * 15
-        else:
-            xp_needed = character['level'] * 20
+    if character['class'] == 'Rogue':
+        xp_needed = character['level'] * 15
+    else:
+        xp_needed = character['level'] * 20
 
-        if character['xp'] >= xp_needed:
-            character['xp'] -= xp_needed
-            character['level'] += 1
-            character['strength'] += 1
+    if character['xp'] >= xp_needed:
+        character['xp'] -= xp_needed
+        character['level'] += 1
+        character['strength'] += 1
 
-            if character['class'] == 'Cleric' and character['level'] % 5 == 0:
-                character['spell_slots'] += 1
-                print("You gained an extra spell slot!")
+    if character['class'] == 'Cleric' and character['level'] % 5 == 0:
+        character['spell_slots'] += 1
+        print("You gained an extra spell slot!")
 
-            print(f"{character['name']} leveled up to level {character['level']}!")
-        else:
-            break
+        print(f"{character['name']} leveled up to level {character['level']}!")
+    else:
+         return
 # TENGO QUE LLAMAR A LAS FUNCIONES EN UN MAIN LOOP Y EN EL OTRO PARA QUE CORRAN
+def run_game():
+    character = None
+
+    while True:
+        main_menu()
+        choice = input("Choose an option (1-4): ")
+
+        if choice == '1':
+            if character:
+                print("\nCharacter Info:")
+                for key, value in character.items():
+                    print(f"{key}: {value}")
+            else:
+                print("No character created yet.")
+
+        elif choice == '2':
+            character = create_character()
+            print("Character created successfully!")
+
+        elif choice == '3':
+            if character:
+                level_up_loop(character)
+            else:
+                print("No character to edit. Create one first.")
+
+        elif choice == '4':
+            print("Goodbye!")
+            break
+
+        else:
+            print("Invalid choice. Try again.")
+
+
+run_game()
+
+
 
