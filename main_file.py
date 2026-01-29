@@ -2,6 +2,10 @@
 import random
 import sys
 import time
+import os
+
+def clear_screen():
+    os.system('cls' if os.name == 'nt' else 'clear')
 
 def type_print(string, delay = 0.06):
     for char in string:
