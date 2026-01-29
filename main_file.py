@@ -16,7 +16,20 @@ classes = {
 
 characters = []
 
+def main_menu():
+    """
+    Displays the main menu options for the player.
+    """
+    options = {
+        1: "View Character",
+        2: "Create Character",
+        3: "Edit Character",
+        4: "Leave Game"
+    }
 
+    print("\nMain Menu")
+    for key, value in options.items():
+        print(f"{key}. {value}")
 def menu():
     print("Main Menu")
     print("1. View Characters")
@@ -104,3 +117,53 @@ def main():
         if another.lower() != 'yes':
             break
 main()
+def create_character():
+    character = {}
+    character['name'] = input("Enter your character's name: ")
+    print("Choose your class:")
+    print("1. Rogue")
+    print("2. Cleric")
+    class_choice = input("Enter the number of your choice: ")
+    
+    if class_choice == '1':
+        character['class'] = 'Rogue'
+        character['strength'] = 20
+        character['health'] = 20
+        character['wisdom'] = 20
+        character['xp'] = 0
+        character['level'] = 1
+    elif class_choice == '2':
+        character['class'] = 'Cleric'
+        character['strength'] = 10
+        character['health'] = 30
+        character['wisdom'] = 20
+        character['xp'] = 0
+        character['level'] = 1
+    else:
+        print("Invalid choice. Please try again.")
+        return create_character()
+    
+    return character
+def level_up_loop(character):
+    """
+    Checks if the character has enough XP to level up.
+    Rogue needs 15 XP per level.
+    Cleric needs 20 XP per level.
+    """
+    if character['class'] == 'Rogue':
+        xp_needed = character['level'] * 15
+    else:
+        xp_needed = character['level'] * 20
+
+    if character['xp'] >= xp_needed:
+        character['xp'] -= xp_needed
+        character['level'] += 1
+        character['strength'] += 1
+
+    if character['class'] == 'Cleric' and character['level'] % 5 == 0:
+        character['spell_slots'] += 1
+        print("You gained an extra spell slot!")
+
+        print(f"{character['name']} leveled up to level {character['level']}!")
+    else:
+         return
