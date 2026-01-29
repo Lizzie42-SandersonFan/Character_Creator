@@ -72,20 +72,80 @@ def view_character():
 
 def edit_character():
     def edit_XP():
-        pass
         # Helper to add/remove. Have user type in number to add/remove. Update XP
+        adding = adding_removing("XP")
+        if adding == "ADDING":
+            while True:
+                type_print("How much XP would you like to add to your character?\n")
+                add = input("This needs to be a whole number\n").strip().upper()
+                if check_valid_num(add) == True:
+                    return int(add)
+                else:
+                    continue
+        else:
+            while True:
+                type_print("How much XP would you like to remove from your character?\n")
+                remove = input("This needs to be a whole number\n").strip().upper()
+                if check_valid_num(remove) == True:
+                    return int(remove)
+                else:
+                    continue
 
     def edit_stat():
-        pass
         # Have user select stat to reroll. Reroll with random number and save it
+        while True:
+            # i need to display the list of stats and have the user pick the stat. I will choose a random number between 10 and 30 and return the stat picked AND the new value
+            type_print("Which stat would you like to reroll:\nStrength\nWisdom\nDexterity\nIntelligence\n")
+            choice = input("Type the NAME of the stat you would like to reroll\n").strip().upper()
+            if choice == "STRENGTH":
+                new_value = random.randint(10, 30)
+                return choice, new_value
+            elif choice == "WISDOM":
+                new_value = random.randint(10, 30)
+                return choice, new_value
+            elif choice == "DEXTERITY":
+                new_value = random.randint(10, 30)
+                return choice, new_value
+            elif choice == "INTELLIGENCE":
+                new_value = random.randint(10, 30)
+                return choice, new_value
+            else:
+                print("Invalid input. Try again")
+                continue
 
     def edit_invintory():
-        pass
         # Use helper to know if adding or removing. Have user type in something to add\remove to invintory list
+        adding = adding_removing("invintory")
+        if adding == "ADDING":
+            while True:
+                add = input("What would you like to add to your character's invintory\n").strip().title()
+        else:
+            while True:
+                type_print("\n")
+                remove = input("What would you like to remove from your character's invintory\n").strip().title()
 
-    def adding_removing():
-        pass
+    def adding_removing(thing):
         # Helper function that will ask the user if they are adding or removing
+        while True:
+            type_print(f"Are you adding to {thing} or removing from {thing}\n")
+            a_r = input("Enter 'ADDING' if adding or 'REMOVING' if removing\n").strip().upper()
+            if a_r == "ADDING":
+                return "ADDING"
+            elif a_r == "REMOVING":
+                return "REMOVING"
+            else:
+                print("Invalid input. Please try again")
+                continue
+    
+    def check_valid_num(num):
+        if num.isdigit() == True:
+            if int(num) % 1 == 0:
+                # User gave a valid number
+                return True
+            else:
+                print("You seemed to have entered a number, but it's not a whole number. Try again")
+        else:
+            print("You seemed to have entered something other than a number. Try again")
 
     global characters
     if not characters:
@@ -100,16 +160,23 @@ def edit_character():
 
     # Get user to acctually select a character to view
     while True:
-        view_choice = input("Type the name of the character you want to edit (or 'Leave' if you want to go back to main menu):\n").strip()
-        if view_choice == "Leave":
+        edit_choice = input("Type the name of the character you want to edit (or 'Leave' if you want to go back to main menu):\n").strip()
+        if edit_choice == "Leave":
             type_print("Redirecting to main menu . . .")
             time.sleep(0.5)
             # Call main
             break
         for chara in characters:
-            if view_choice == chara["Name"]:
-                pass 
+            if edit_choice == chara["Name"]: 
                 # Now give the user a list of things to edit and call the inner function corresponding to the selection
+                while True:
+                    type_print(f"What would you like to edit on {chara}:\n1) XP amount\n2) Reroll a stat\n3) {chara}'s Invintory\n")
+                    choice = input("Type the number corresponding to what you want to edit\n").strip().upper()
+                    if choice == "1":
+                        xp = edit_XP()
+                        type_print(f"Ajusting XP . . .")
+                        time.sleep(0.5)
+                        #chara["XP"]
             else:
                 print("Could not find the character you typed in. Check your spelling and punctuation.")
                 continue
