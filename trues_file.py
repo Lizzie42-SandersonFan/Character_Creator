@@ -23,16 +23,16 @@ def create_character():
     #For each class in class options
     for key, value in classes.items():
         print(f"{key}: {value['Name']}:{value['Stats']}")
-    
-    #Try and accept
+
+    #Try and except
     try:
     #Class is set to input type 1-3 to choose your class
         c_class = int(input("Enter the number of your class choice: "))
     except ValueError:
         print("Invalid input. Please enter a number corresponding to your class choice.")
         return
-    
-    #If choise is ionlcaid, stop function
+
+    #If choice is invalid, stop function
     if c_class not in classes:
         print("Invalid class choice.")
         return       
@@ -70,9 +70,14 @@ def create_character():
     except ValueError:
         print("Invalid input. Please enter a number corresponding to your weapon choice.")
         return
+    #Add xp and level to char dict.
+    character["XP"] = 0
+    character["Level"] = 1
+    #Name character
+    character["Name"] = input("Enter your character's name: ")
     #Finish character creation
     characters.append(character)
-    slow_print(f"Character created: {character}")
+    slow_print(f"Character created:\nName: {character['Name']}\n Class: {character['Class']}\n Stats:\n Strength: {character['Stats']['Strength']}\n Health: {character['Stats']['Health']}\n Wisdom: {character['Stats']['Wisdom']}\n Dexterity: {character['Stats']['Dexterity']}\n Intelligence: {character['Stats']['Intelligence']}\n XP: {character['XP']}\n Level: {character['Level']}\n Weapon: {character['Weapon']}")
 def main():
     #Main program loop
     while True:
