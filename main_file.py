@@ -2,6 +2,10 @@
 import random
 import sys
 import time
+import os
+
+def clear_screen():
+    os.system('cls' if os.name == 'nt' else 'clear')
 
 def type_print(string, delay = 0.06):
     for char in string:
@@ -48,8 +52,9 @@ def create_character():
                 create_character()
 
     #For each class in class options
-    for key, value in classes.items():
-        print(f"{key}: {value['Name']}:{value['Stats']}")
+    print(f"\n1. Fighter Stats: Strength {classes[1]['Stats']['Strength']}, Health {classes[1]['Stats']['Health']}, Wisdom {classes[1]['Stats']['Wisdom']}")
+    print(f"\n2. Rogue Stats: Strength {classes[2]['Stats']['Strength']}, Health {classes[2]['Stats']['Health']}, Wisdom {classes[2]['Stats']['Wisdom']}")
+    print(f"\n3. Cleric Stats: Strength {classes[3]['Stats']['Strength']}, Health {classes[3]['Stats']['Health']}, Wisdom {classes[3]['Stats']['Wisdom']}\n")
 
     #Try and except
     try:
