@@ -36,7 +36,7 @@ def view_character():
             break
         for chara in characters:
             if view_choice == chara["Name"]:
-                type_print(f"Viewing Character:\n Name: {chara['Name']}\n Class: {chara['Class']}\nStats:\n Strength: {chara['Stats']['Strength']}\n Health: {chara['Stats']['Health']}\n Wisdom: {chara['Stats']['Wisdom']}\n Dexterity: {chara['Stats']['Dexterity']}\n Intelligence: {chara['Stats']['Intelligence']}\n {chara['Stats']['Level']}\n XP: {chara['Stats']['XP']}\n Weapon: {chara['Weapon']}\n")
+                type_print(f"Viewing Character:\n Name: {chara['Name']}\n Class: {chara['Class']}\nStats:\n Strength: {chara['Stats']['Strength']}\n Health: {chara['Stats']['Health']}\n Wisdom: {chara['Stats']['Wisdom']}\n Dexterity: {chara['Stats']['Dexterity']}\n Intelligence: {chara['Stats']['Intelligence']}\n {chara['Level']}\n XP: {chara['XP']}\n Weapon: {chara['Weapon']}\n")
                 while True:
                     type_print("Would you like to\n1)View another character\nor\n2) Go back to main menu\n")
                     again = input("Type the number for the action you would like to do\n")
@@ -179,7 +179,7 @@ def edit_character():
                             time.sleep(0.5)
                             chara["XP"] += xp
                             type_print("XP updated\n")
-                            type_print(f"XP for {chara["Name"]} is {chara['Stats']['XP']}")
+                            type_print(f"XP for {chara["Name"]} is {chara['XP']}")
                             break
                         elif choice == "2":
                             stat, value = edit_stat()
@@ -200,7 +200,7 @@ def edit_character():
                 else:
                     print("Could not find the character you typed in. Check your spelling and punctuation.")
                     continue
-type_print("\nNow testing Viewing Character\n\n")
+type_print("\nNow testing Viewing Character (My code)\n\n")
 view_character()
-type_print("\nNow testing Editing Character\n\n")
+type_print("\nNow testing Editing Character (My code)\n\n")
 edit_character()
