@@ -185,6 +185,7 @@ def edit_character():
                 if check_valid_num(add) == True:
                     return int(add)
                 else:
+                    print("You seemed to have entered an invalid number. Please try again")
                     continue
         else:
             while True:
@@ -282,6 +283,7 @@ def edit_character():
                             chara["XP"] += xp
                             type_print("XP updated\n")
                             type_print(f"XP for {chara["Name"]} is {chara['Stats']['XP']}\n")
+                            level_up_loop()
                             break
                         elif choice == "2":
                             stat, value = edit_stat()
