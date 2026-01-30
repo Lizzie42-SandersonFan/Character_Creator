@@ -146,7 +146,7 @@ def view_character():
     else:
         type_print("These are the characters you have to view\n")
         for character in characters:
-            print(f"{character['Name']} ({character["Class"]})")
+            print(f"{character['Name']}: {character["Class"]}): Level {character["Level"]}")
         print("Leave")
     
     # Get user to acctually select a chracter to view
@@ -190,6 +190,7 @@ def edit_character():
                 if check_valid_num(add) == True:
                     return int(add)
                 else:
+                    print("You seemed to have entered an invalid number. Please try again")
                     continue
         else:
             while True:
@@ -286,7 +287,8 @@ def edit_character():
                             time.sleep(0.5)
                             chara["XP"] += xp
                             type_print("XP updated\n")
-                            type_print(f"XP for {chara["Name"]} is {chara['Stats']['XP']}\n")
+                            type_print(f"XP for {chara["Name"]} is {chara['XP']}\n")
+                            level_up_loop()
                             break
                         elif choice == "2":
                             stat, value = edit_stat()

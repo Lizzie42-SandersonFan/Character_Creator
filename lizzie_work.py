@@ -179,7 +179,7 @@ def edit_character():
                             time.sleep(0.5)
                             chara["XP"] += xp
                             type_print("XP updated\n")
-                            type_print(f"XP for {chara["Name"]} is {chara['Stats']['XP']}")
+                            type_print(f"XP for {chara["Name"]} is {chara['XP']}")
                             break
                         elif choice == "2":
                             stat, value = edit_stat()
