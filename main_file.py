@@ -47,6 +47,10 @@ def create_character():
             #Ask if user wants to create another character
             another = input("Do you want to create another character? (yes/no): ").strip()
             if another.lower() != 'yes':
+                clear_screen()
+                break
+            else:
+                clear_screen()
                 break
             else:
                 create_character()
@@ -72,7 +76,7 @@ def create_character():
     #Get select class data
     base_class = classes[c_class]
     #Copy base stats so originial class stats are not changed
-    character = { "Class": base_class["Name"], "Stats": base_class["Stats"].copy(), "Weapon": None }
+    character = { "Class": base_class["Name"], "Stats": base_class["Stats"].copy(), "Weapon": None, "Inventory": [] }
     #Inform user about random stats
     type_print("You have two empty stats.\n")
     print("Rolling for your stats...")  
@@ -107,7 +111,7 @@ def create_character():
     character["XP"] = 0
     character["Level"] = 1
     #Name character
-    character["Name"] = input("Enter your character's name: ")
+    character["Name"] = input("Enter your character's name: ").title().strip()
     #Finish character creation
     characters.append(character)
     type_print(f"Character created:\nName: {character['Name']}\n Class: {character['Class']}\nStats:\n Strength: {character['Stats']['Strength']}\n Health: {character['Stats']['Health']}\n Wisdom: {character['Stats']['Wisdom']}\n Dexterity: {character['Stats']['Dexterity']}\n Intelligence: {character['Stats']['Intelligence']}\nXP: {character['XP']}\nLevel: {character['Level']}\nWeapon: {character['Weapon']}\n")
@@ -142,19 +146,21 @@ def view_character():
     global characters
     if not characters:
         type_print("You don't have any characters to view.\nRedirecting you to main menu to make a character\n")
+        clear_screen()
         menu()
     else:
         type_print("These are the characters you have to view\n")
         for character in characters:
-            print(f"{character['Name']}: {character["Class"]}): Level {character["Level"]}")
+            print(f"{character['Name']}: {character['Class']}): Level {character['Level']}")
         print("Leave")
     
     # Get user to acctually select a chracter to view
     while True:
-        view_choice = input("Type the name of the character you want to view (or 'Leave' if you want to go back to main menu):\n").strip()
+        view_choice = input("Type the name of the character you want to view (or 'Leave' if you want to go back to main menu): ").strip()
         if view_choice == "Leave":
             type_print("Redirecting to main menu . . .\n")
             time.sleep(0.5)
+            clear_screen()
             menu()
             break
         for chara in characters:
@@ -164,11 +170,13 @@ def view_character():
                     type_print("Would you like to\n1) View another character\nor\n2) Go back to main menu\n")
                     again = input("Type the number for the action you would like to do\n")
                     if again == "1":
+                        clear_screen()
                         view_character()
                         break
                     elif again == "2":
                         type_print("Redirecting to main menu . . .\n")
                         time.sleep(0.5)
+                        clear_screen()
                         menu()
                         break
                     else:
@@ -223,17 +231,36 @@ def edit_character():
                 print("Invalid input. Try again")
                 continue
 
-    def edit_invintory():
-        # Use helper to know if adding or removing. Have user type in something to add\remove to invintory list
-        adding = adding_removing("invintory")
+    def edit_inventory():
+        # Use helper to know if adding or removing. Have user type in something to add\remove to inventory list
+        adding = adding_removing("inventory")
         if adding == "ADDING":
             while True:
-                add = input("What would you like to add to your character's invintory\n").strip().title()
-                # I need True to set up an invintory so I can append 'add' into it 
+                add = input("What would you like to add to your character's inventory\n").strip().title()
+                # I need True to set up an inventory so I can append 'add' into it
+                character["Inventory"].append(add)
+                type_print(f"Added {add} to {character['Name']}'s inventory\n")
+                print("Current inventory:")
+                for item in character["Inventory"]:
+                    print(f"- {item}")
+                time.sleep(2)
+                clear_screen()
+                edit_character()
         else:
             while True:
-                remove = input("What would you like to remove from your character's invintory\n").strip().title()
-                # True needs to give me an invintory so I can hunt down 'remove' and remove it from the list
+                remove = input("What would you like to remove from your character's inventory\n").strip().title()
+                # True needs to give me an inventory so I can hunt down 'remove' and remove it from the list
+                if remove in character["Inventory"]:
+                    character["Inventory"].remove(remove)
+                    type_print(f"Removed {remove} from {character['Name']}'s inventory\n")
+                    for item in character["Inventory"]:
+                        print(f"- {item}")
+                    time.sleep(2)
+                    clear_screen()
+                    edit_character()
+                else:
+                    type_print(f"{remove} is not in {character['Name']}'s inventory\n")
+                    continue
 
     def adding_removing(thing):
         # Helper function that will ask the user if they are adding or removing
@@ -261,6 +288,7 @@ def edit_character():
     global characters
     if not characters:
         type_print("You don't have any characters to edit.\nRedirecting you to main menu to make a character\n")
+        clear_screen()
         menu()
     else:
         while True:
@@ -273,13 +301,14 @@ def edit_character():
             if edit_choice == "Leave":
                 type_print("Redirecting to main menu . . .\n")
                 time.sleep(0.5)
+                clear_screen()
                 menu()
                 break
             for chara in characters:
                 if edit_choice == chara["Name"]: 
                     # Now give the user a list of things to edit and call the inner function corresponding to the selection
                     while True:
-                        type_print(f"What would you like to edit on {chara["Name"]}:\n1) XP amount\n2) Reroll a stat\n3) {chara["Name"]}'s Invintory\n")
+                        type_print(f"What would you like to edit on {chara["Name"]}:\n1) XP amount\n2) Reroll a stat\n3) {chara["Name"]}'s Inventory\n")
                         choice = input("Type the number corresponding to what you want to edit\n").strip().upper()
                         if choice == "1":
                             xp = edit_XP()
@@ -296,8 +325,8 @@ def edit_character():
                             chara[stat] = value
                             break
                         elif choice == "3":
-                            #item = edit_invintory()
-                            print("Unable to edit invintory right now. Please pick something else to edit\n")
+                            #item = edit_inventory()
+                            edit_inventory()
                             continue
                     # We have left the editing loop and now need to leave the selection loop
                     type_print(f"Would you like to:\n1) continue editing characters or\n2) Leave\n")
@@ -306,6 +335,7 @@ def edit_character():
                         continue
                     else:
                         type_print("Leaving character editor.\nRedirecting to main menu . . .\n")
+                        clear_screen()
                         menu()
                 else:
                     print("Could not find the character you typed in. Check your spelling and punctuation.")
