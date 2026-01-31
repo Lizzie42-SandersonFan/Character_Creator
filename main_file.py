@@ -1,4 +1,4 @@
-# LD, LV, & TE First group Project
+# LD, LV, & TE First gorup Project
 import random
 import sys
 import time
@@ -13,10 +13,9 @@ def type_print(string, delay = 0.06):
         time.sleep(delay)
 
 classes = { 
-1 : {"Name": "Fighter", "Weapons": ["Greatsword", "Greataxe", "Maul"], "Stats": {"Strength": 30, "Health": 20, "Wisdom": 10}, "Inventory": []},
-2 : {"Name": "Rogue", "Weapons": ["Daggers", "Blowgun", "Knives"], "Stats": {"Strength": 20, "Health": 20, "Wisdom": 20}, "Inventory": []},
-3 : {"Name": "Cleric", "Weapons": ["Mace", "Warhammer", "Morning Star"], "Stats": {"Strength": 10, "Health": 30, "Wisdom": 20}, "Inventory": []}
-}
+1 : {"Name": "Fighter", "Weapons": ["Greatsword", "Greataxe", "Maul"], "Stats": {"Strength": 30, "Health": 20, "Wisdom": 10}},
+2 : {"Name": "Rogue", "Weapons": ["Daggers", "Blowgun", "Knives"], "Stats": {"Strength": 20, "Health": 20, "Wisdom": 20}},
+3 : {"Name": "Cleric", "Weapons": ["Mace", "Warhammer", "Morning Star"], "Stats": {"Strength": 10, "Health": 30, "Wisdom": 20}}}
 
 characters = []
 
@@ -52,6 +51,8 @@ def create_character():
                 break
             else:
                 clear_screen()
+                break
+            else:
                 create_character()
 
     #For each class in class options
