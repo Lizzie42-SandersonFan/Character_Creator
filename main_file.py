@@ -22,7 +22,7 @@ def menu():
     clear_screen()
     while True:
         print("Main Menu")
-        print("1. View Characters")
+        print("1. View Character")
         print("2. Create Character")
         print("3. Edit Character")
         print("4. Exit")
@@ -172,10 +172,6 @@ def find_character(furture_action):
             continue
 
 def view_character():
-    def print_inventory(the_inventory):
-        for item in the_inventory:
-            type_print(f"{item}\n")
-
     global characters
     if not characters:
         type_print("You don't have any characters to edit.\nRedirecting you to main menu to make a character\n")
@@ -183,7 +179,7 @@ def view_character():
     type_print("First,\n")
     find_character("viewing")
     while True:
-        character = input("Type the name of the character you wish to view\nIF no character's show up, type 'Leave' to try again\n").strip().title()
+        character = input("Type the NAME of the character you wish to view\nIF no character's show up, type 'Leave' to try again\n").strip().title()
         if character == "Leave":
             view_character()
         for chara in characters:
@@ -200,9 +196,9 @@ def view_character():
                     time.sleep(0.5)
                     menu()
                     break
-            else:
-                print("Could not find the character you typed in. Check your spelling and punctuation.")
-                continue
+        else:
+            print("Could not find the character you typed in. Try again")
+            continue
 
 def edit_character():
     def edit_XP():
