@@ -102,8 +102,9 @@ def create_character():
             return
         #Catch value error
     except ValueError:
-        print("Invalid input. Please enter a number corresponding to your weapon choice.")
-        return
+        print("Invalid input. Please enter a number corresponding to your weapon choice. Trying again")
+        clear_screen()
+        create_character()
     #Add xp and level to char dict.
     character["XP"] = 0
     character["Level"] = 1
@@ -130,12 +131,12 @@ def level_up_loop(character):
         character['XP'] -= xp_needed
         character['Level'] += 1
         character['Stats']['Strength'] += 1
+        print(f"{character['Name']} leveled up to level {character['Level']}!")
 
     if character['Class'] == 'Cleric' and character['Level'] % 5 == 0:
         character['Spell_slots'] += 1
         print("You gained an extra spell slot!")
 
-    print(f"{character['Name']} leveled up to level {character['Level']}!")
 
 def find_character(furture_action):
     global characters
@@ -171,10 +172,14 @@ def find_character(furture_action):
             continue
 
 def view_character():
+    def print_inventory(the_inventory):
+        for item in the_inventory:
+            type_print(f"{item}\n")
+
     global characters
     if not characters:
         type_print("You don't have any characters to edit.\nRedirecting you to main menu to make a character\n")
-        # Call main menu
+        menu()
     type_print("First,\n")
     find_character("viewing")
     while True:
@@ -183,9 +188,9 @@ def view_character():
             view_character()
         for chara in characters:
             if character == chara["Name"]:
-                type_print(f"\nViewing Character:\nName: {chara['Name']}\n Class: {chara['Class']}\nStats:\n Strength: {chara['Stats']['Strength']}\n Health: {chara['Stats']['Health']}\n Wisdom: {chara['Stats']['Wisdom']}\n Dexterity: {chara['Stats']['Dexterity']}\n Intelligence: {chara['Stats']['Intelligence']}\nLevel: {chara['Level']}\nXP: {chara['XP']}\nWeapon: {chara['Weapon']}\n")
+                type_print(f"\nViewing Character:\nName: {chara['Name']}\n Class: {chara['Class']}\nStats:\n Strength: {chara['Stats']['Strength']}\n Health: {chara['Stats']['Health']}\n Wisdom: {chara['Stats']['Wisdom']}\n Dexterity: {chara['Stats']['Dexterity']}\n Intelligence: {chara['Stats']['Intelligence']}\nLevel: {chara['Level']}\nXP: {chara['XP']}\nWeapon: {chara['Weapon']}\nInventory:\n - {chara["Inventory"]}\n")
                 time.sleep(2)
-                type_print("Would you like to\n1)View another character\nor\n2) Go back to main menu\n")
+                type_print("Would you like to\n1) View another character\nor\n2) Go back to main menu\n")
                 again = input("Type the number for the action you would like to do\n")
                 if again == "1":
                     view_character()
@@ -250,7 +255,7 @@ def edit_character():
                 add = input("What would you like to add to your character's inventory\n").strip().title()
                 chara["Inventory"].append(add)
                 type_print(f"Added {add} to {chara['Name']}'s inventory\n")
-                again = input("Would you like to add another item (yes/no)").strip().lower()
+                again = input("Would you like to add another item (yes/no)\n").strip().lower()
                 if again != "yes":
                     # user said no or gave invalid input
                     break
@@ -320,8 +325,8 @@ def edit_character():
                         chara[stat] = value
                         break
                     elif choice == "3":
-                            edit_inventory()
-                            continue
+                        edit_inventory()
+                        break
                     else:
                         print("Invalid input. Please try again")
                         continue

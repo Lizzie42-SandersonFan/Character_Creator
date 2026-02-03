@@ -114,33 +114,17 @@ def edit_character():
                 print("Invalid input. Try again")
                 continue
 
-    def edit_inventory():
-        # Use helper to know if adding or removing. Have user type in something to add\remove to inventory list
-        adding = adding_removing("inventory")
+    def edit_invintory():
+        # Use helper to know if adding or removing. Have user type in something to add\remove to invintory list
+        adding = adding_removing("invintory")
         if adding == "ADDING":
             while True:
-                add = input("What would you like to add to your character's inventory\n").strip().title()
-                character["Inventory"].append(add)
-                type_print(f"Added {add} to {character['Name']}'s inventory\n")
-                again = input("Would you like to add another item (yes/no?").strip().lower()
-                if again != "yes":
-                    # user said no or gave invalid input
-                    break
-                else:
-                    continue
+                add = input("What would you like to add to your character's invintory\n").strip().title()
+                # I need True to set up an invintory so I can append 'add' into it 
         else:
             while True:
-                remove = input("What would you like to remove from your character's inventory\n").strip().title()
-                if remove in character["Inventory"]:
-                    character["Inventory"].remove(remove)
-                    type_print(f"Removed {remove} from {character['Name']}'s inventory\n")
-                    for item in character["Inventory"]:
-                        print(f"- {item}")
-                    time.sleep(2)
-                    edit_character()
-                else:
-                    type_print(f"{remove} is not in {character['Name']}'s inventory\n")
-                    continue
+                remove = input("What would you like to remove from your character's invintory\n").strip().title()
+                # True needs to give me an invintory so I can hunt down 'remove' and remove it from the list
 
     def adding_removing(thing):
         # Helper function that will ask the user if they are adding or removing
@@ -177,8 +161,8 @@ def edit_character():
             if character == chara["Name"]:
                 while True:
                     type_print(f"What would you like to edit on {character}:\n1) XP amount\n2) Reroll a stat\n3) Adjust {character}'s Inventory\n")
-                    choice = input("Enter the number correspondng to what you want to edit\n")
-                    if choice == "1":
+                    action = input("Enter the number correspondng to what you want to edit\n")
+                    if action == "1":
                         xp = edit_XP()
                         type_print(f"Ajusting XP . . .\n")
                         time.sleep(0.5)
@@ -186,14 +170,15 @@ def edit_character():
                         type_print("XP updated\n")
                         type_print(f"XP for {chara["Name"]} is {chara['XP']}")
                         break
-                    elif choice == "2":
+                    elif action == "2":
                         stat, value = edit_stat()
                         type_print(f"Your new stat for {stat} is {value}\n")
                         chara[stat] = value
                         break
-                    elif choice == "3":
-                            edit_inventory()
-                            continue
+                    elif action == "3":
+                        #item = edit_invintory()
+                        print("Unable to edit invintory right now. Please pick something else to edit\n")
+                        break
                     else:
                         print("Invalid input. Please try again")
                         continue
